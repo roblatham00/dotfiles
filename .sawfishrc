@@ -1,0 +1,8 @@
+; vim: syntax=lisp
+; keep the standard stuff
+(require 'sawmill-defaults)
+; (require  'site-init)
+
+; my addons
+(setq load-path (cons "~/.sawfish/lisp" load-path))
+(require 'direction)

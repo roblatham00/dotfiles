@@ -1,0 +1,2 @@
+alias gnucash="ssh -f smaug gnucash"
+alias soffice="ssh -f smaug '~/office*/soffice'"

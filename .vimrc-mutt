@@ -1,0 +1,15 @@
+" let's try this:  in mutt, i want a text width of 70: 
+set tw=70 
+command! -nargs=1 -complete=file Attach :call AttachFieldFunction(<q-args>)
+function! AttachFieldFunction(file)
+	execute "normal mx1G/^ *$/\<CR>"
+ 	execute "normal OAttach: ". a:file . "\<ESC>`x"
+endfunction()
+
+" removes quotes sigs (with -- or string of == or __ as delimiter)
+" g/^> *[-_=]\{2,} *$/,/^$/-1dgg/^$<CR>
+g/^> *[-_]\{2,} *$/,/^$/-1d
+
+" macro for ROT13
+noremap ,rot :0:/^$/,/-- $/!tr A-Za-z N-ZA-Mn-za-m/^Subject:dw:.!tr A-Za-z N-ZA-Mn-za-m0P 
+noremap ,srot /^Subjectdw:.!tr A-Za-z N-ZA-Mn-za-m0P

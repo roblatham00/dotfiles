@@ -1,0 +1,67 @@
+do_login_on_startup=1
+do_applet_show_on_startup=1
+do_spell_checking=0
+use_alternate_browser=0
+do_logging=1
+do_strip_html=1
+do_restore_last_conv=1
+do_play_send=0
+do_play_first=0
+do_play_receive=0
+do_online_sound=0
+do_away_sound=1
+do_no_sound_when_away=0
+BuddyArriveFilename=/usr/share/sounds/everybuddy/BuddyArrive.au
+BuddyAwayFilename=/usr/share/sounds/everybuddy/BuddyLeave.au
+BuddyLeaveFilename=/usr/share/sounds/everybuddy/BuddyLeave.au
+SendFilename=/usr/share/sounds/everybuddy/Send.au
+RecieveFilename=/usr/share/sounds/everybuddy/Receive.au
+FirstMsgFilename=/usr/share/sounds/everybuddy/Receive.au
+SoundVolume=0.000000
+do_ignore_unknown=0
+do_send_idle_time=1
+do_raise_window=1
+do_timestamp=1
+do_multi_line=1
+do_enter_send=1
+do_convo_timestamp=1
+do_tabbed_chat=1
+do_tabbed_chat_orient=0
+do_ignore_fore=0
+do_ignore_back=0
+do_ignore_font=0
+accel_next_tab=<Control>Right
+accel_prev_tab=<Control>Left
+use_recoding=0
+proxy_type=0
+proxy_port=3128
+do_proxy_auth=0
+proxy_user=
+proxy_password=
+connections
+	AIM
+		server="toc.oscar.aol.com"
+		port="21"
+	end
+	ICQ
+		server="icq.mirabilis.com"
+		port="4000"
+	end
+	Yahoo
+		do_mail_notify="0"
+	end
+	MSN
+		server="messenger.hotmail.com"
+		port="1863"
+		do_mail_notify="0"
+		do_mail_notify_show="0"
+		do_mail_notify_run_script="0"
+		do_mail_notify_script_name=""
+	end
+	Jabber
+		server="jaber.com"
+		port="5222"
+	end
+	IRC
+	end
+end
