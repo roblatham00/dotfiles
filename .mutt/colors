@@ -16,9 +16,10 @@ color search       brightwhite     red
 color header       yellow          default   ^(From|Subject):
 color header       cyan            default   ^(X-*|User-Agent*)
 color body         brightyellow    default   "(ftp|http)://[^ >]+"
-color body         brightblue      default   \\*.*\\*
-color body         cyan            default   \\_.*\\_
-color body         magenta         default   \\/.*\\/
+# these 3 end up wrong more often than not 
+#color body         brightblue      default   \\*.*\\*
+#color body         cyan            default   \\_.*\\_
+#color body         magenta         default   \\/.*\\/
 color body         cyan            default   [-a-z_0-9.]+@[-a-z_0-9.]+
 color markers      red             default   # the '+' that indicates wrapping
 color underline    white           red
@@ -30,7 +31,8 @@ color index brightyellow default ~F
 color index green default ~O
 color index brightred default ~D
 color index yellow default ~T
-color index brightred white '(~f Plaid|~f els6|~f cows_moo)'
+# example of hilighting for a special case
+#color index brightred white '(~f Plaid|~f els6|~f cows_moo)'
 color index   brightwhite    default     ~z>15k   # Subject headers of all mails larger than 15k are brightwhite in the index.
 
 # Different colors for 8 levels of quoting:
