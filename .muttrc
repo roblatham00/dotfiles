@@ -1,0 +1,7 @@
+source ~/.mutt/rc
+source ~/.mutt/colors
+source ~/.mutt/aliases
+source ~/.mutt/gpg
+
+source ~/.mutt/private
+source ~/.mutt/local
