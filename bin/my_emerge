@@ -1,0 +1,27 @@
+#!/bin/sh
+
+PVFS2_SRCDIR=${HOME}/src/pvfs2
+PVFS2_DIR=${HOME}/pvfs2
+BUILD_DIR=/scratch/local/robl/build
+
+stuff() {
+	echo "===== updating pvfs2: ==== "
+	cd $PVFS2_SRCDIR && color_cvs update ||  return 1
+
+	echo "===== updating mpich1 ==== "
+	cd ~/src && rsync -Lavz  terra:/homes/robl/projects/mpich-cvs . \
+		|| return 1
+
+
+	echo "===== building pvfs2 ==== "
+	mkdir -p $BUILD_DIR/pvfs2 && cd $BUILD_DIR/pvfs2 || return 1
+	$PVFS2_SRCDIR/configure --prefix=$PVFS2_DIR \
+		--with-gm=/opt/gm-2.0.5-2.4.19-64GB-SMP-i686 && make \
+		&& make install || return 1
+
+	echo "==== building mpich ==== "
+	mkdir -p ${BUILD_DIR}/mpich1 && cd ${BUILD_DIR}/mpich1 || return 1
+	~/bin/mpichconfig && make && make install || return 1
+}
+
+stuff && echo "!all built!" || echo "check logs for failure"
