@@ -23,6 +23,9 @@ set metoo=no
 my_hdr Mail-Copies-To: nobody
 my_hdr X-No-CC: I subscribe to this list\; do not CC me on replies. 
 
+alternative_order text/plain text/html
+auto_view text/html
+
 # sven gluckes is an rc file pimp master
 ## Command ignore :
 ## Syntax: ignore <keyword_list>
