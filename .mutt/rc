@@ -101,3 +101,6 @@ unhdr_order *
 #
 # Sven's Favourite Header Order:
 hdr_order Sender: From From: Reply-To: Subject: Organization: Date: Message-Id: User-Agent: X-Editor: X-Mailer: X-Newsreader: X-Agent: To: Cc: Newsgroups: X-Resent Followup-To: Mail-Followup-To:
+
+# that's all for sven's crack. now my stuff
+unignore X-Spam-Status
