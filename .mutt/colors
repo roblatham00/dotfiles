@@ -1,0 +1,58 @@
+# $Id$
+# $Source$
+
+color hdrdefault   brightwhite     default
+color signature    brightred       default
+color indicator    brightyellow    brightred
+color error        brightred       default
+color status       white           blue     # The 2 status bars
+color tree         brightmagenta   default  # The thread-tree
+color tilde        brightmagenta   default
+color message      brightgreen     default  # Informational messages
+color normal       white           default  # Plain text
+color attachment   cyan            default  # 'Cyan' is set at purple.
+# Highlight the search patterns in the pager
+color search       brightwhite     red
+color header       yellow          default   ^(From|Subject):
+color header       cyan            default   ^(X-*|User-Agent*)
+color body         brightyellow    default   "(ftp|http)://[^ >]+"
+color body         brightblue      default   \\*.*\\*
+color body         cyan            default   \\_.*\\_
+color body         magenta         default   \\/.*\\/
+color body         cyan            default   [-a-z_0-9.]+@[-a-z_0-9.]+
+color markers      red             default   # the '+' that indicates wrapping
+color underline    white           red
+
+color body   magenta  default  "(mailto:)?[^[ =^:#,+\t\n<>()@\"]+@[^] =:/^#,\t\n>)@\"\\*]+"
+
+color index brightgreen default ~N
+color index brightyellow default ~F
+color index green default ~O
+color index brightred default ~D
+color index yellow default ~T
+color index brightred white '(~f Plaid|~f els6|~f cows_moo)'
+color index   brightwhite    default     ~z>15k   # Subject headers of all mails larger than 15k are brightwhite in the index.
+
+# Different colors for 8 levels of quoting:
+
+color quoted       brightgreen          default
+color quoted1           color1          default
+color quoted2     brightyellow          default
+color quoted3       brightblue          default
+color quoted4       brightcyan          default
+color quoted5             cyan          default
+color quoted6      brightwhite          default
+color quoted7             blue          default
+
+# Setting by number can resolve color-name conflicts between mutt & your term
+# program:
+
+#   0 = black  1 = red   2 = green   3 = yellow   4 = blue   5 = magenta
+#   6 = cyan    7 = white (usually lite grey)   8 = brightdefault (us. drk grey)
+#   9 = brightred   10 = brightgreen   11 = brightyellow   12 = brightblue
+#  13 = brightmagenta   14 = brightcyan   15 = brightwhite
+
+mono header underline ^(From|Subject):
+mono quoted bold
+
+# vim: ft=muttrc
