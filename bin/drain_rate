@@ -1,18 +1,26 @@
 #!/bin/sh
 
-# not sure of any better way to get the % charge from the cmd line
+# i know this laptop has but one battery
+STATUS_FILE=/proc/pmu/battery_0
+# /proc/pmu/ has *much* better info than /proc/apm
+CHARGE_MAX=$( grep ^max_charge $STATUS_FILE |  cut -d':' -f 2 )
+
+# shell doesnt' really do floating point all that well :>
 get_percent() {
-	echo $(tr -d % < /proc/apm | cut -f' ' -d 7 )
+	local current=$(grep ^charge $STATUS_FILE | cut -d ':' -f 2 )
+	echo $[ 10000 * $current / $CHARGE_MAX ]
 }
 
 START_TIME=$(date +%s)
-START_PERCENT=get_percent
+START_PERCENT=$(get_percent)
 snooze 
 END_TIME=$(date +%s )
-END_PERCENT=get_percent
+END_PERCENT=$(get_percent)
 
+echo $START_TIME  $START_PERCENT $END_TIME $END_PERCENT
 # so assuming you were actually on batter while snoozing, we'll compute 
-# percent drain per minute.  the scale might be 8, but we really only get 2 or 
-# 3 significant figures
+# 100*(percent drain per minute).  the scale might be 8, but we really only get
+# 3 or 4 significant figures, depending on durration of sleep
+# 100? yeah, 98.45% is represented as 9845
 echo "scale=8
 ( $START_PERCENT - $END_PERCENT ) / ( ($END_TIME - $START_TIME)/60 )" | bc
