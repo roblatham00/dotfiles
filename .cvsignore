@@ -43,3 +43,7 @@ src
 tmp
 *.tar.gz *.tgz *.tar *.gz *.deb *.dsc *.rpm
 *.ps *.pdf
+.ICEauthority
+.bkaccepted
+.loki
+Maildir
