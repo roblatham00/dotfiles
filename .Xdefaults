@@ -14,7 +14,7 @@ rxvt*foreground:	white
 rxvt*loginShell:	true
 rxvt*visualBell:	true
 rxvt*saveLines:		9000
-rxvt*cutchars:  `"´()*,;<>@[]{|}
+rxvt*cutchars:  `"'´()*,;<>[]{|}
 rxvt*color0:    #000000
 rxvt*color1:    #a80000
 rxvt*color2:    #00a800
@@ -99,3 +99,5 @@ lavaps.geometry:	84x306+1063+306
 !xpdf.t1Symbol:               /usr/lib/ghostscript/fonts/s050000l.pfb
 !xpdf.t1ZapfDingbats:         /usr/lib/ghostscript/fonts/d050000l.pfb
 
+! damn, wish i knew about this one earlier
+*customization: -color
