@@ -7,6 +7,10 @@ alias sagu="sudo apt-get update"
 alias sagi="sudo apt-get install"
 alias sagdu="sudo apt-get -u dist-upgrade"
 
+pup() {
+	psnup -Pletter -2 $1 ${1%.*}-2.ps
+}
+
 # site options, with machine-specific overrides
 SITE_ALIAS=${HOME}/.zsh/alias.`h=`hostname`; echo ${h#*.}`
 LOCAL_ALIAS=${HOME}/.zsh/alias.`hostname -s`
