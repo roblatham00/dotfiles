@@ -19,6 +19,7 @@
 
 ^alias WNC {window new hide swap last double on split on channel $0}
 ^alias WNQ {window new hide swap last double on split on query $0}
+^alias MNI {msg nickserv identify $0}
 
 ^set timestamp on
 ^set cmdchars ,
