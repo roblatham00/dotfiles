@@ -2,3 +2,9 @@ alias vi=vim
 alias view='vim -R'
 alias viz='vim -R -'
 alias viprocmail="vim /mcs/mail/config/robl/procmailrc"
+alias qsub-int="qsub -A grp-sio -I"
+
+# for the special one-line version of pvfs-test
+showdat() {                                                  
+	cut -d' ' -f 1,5,6,10,11,15 < $1 | grep -v '^#'
+}
