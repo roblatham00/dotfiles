@@ -21,3 +21,11 @@
 ^alias WNQ {window new hide swap last double on split on query $0}
 
 ^set timestamp on
+^set cmdchars ,
+
+^mode robl -ws
+
+#irchost terizla.org
+# somewhat better wrapping
+#^set indent off
+
