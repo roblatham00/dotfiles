@@ -23,6 +23,7 @@ set bg=dark
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+
 " Make p in Visual mode replace the selected text with the "" register.
 vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
@@ -112,3 +113,10 @@ if has("autocmd")
  endif
 
 endif " has("autocmd")
+if version >=600
+    " speed up startup when ssh'd into a host (X forwarding blah)
+    if $SSH_CLIENT != "" || $SSH_TTY != ""
+        set cb=exclude:.*
+    endif
+endif
+
