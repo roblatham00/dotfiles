@@ -1,0 +1,46 @@
+#!/bin/sh
+
+# show conflicts
+# report how many files updated/patched/merged/conflicted
+# hell, show all the cvs activity, just dump final stats and 
+# conflicted files afterwards
+
+UPDATES=0
+PATCHED=0
+MERGED=0
+CONFLICTED=0
+CONFLICTED_FILES=""
+VERBOSE=""
+
+if [ x$1 = x"-v" ]; then
+	VERBOSE="yes"
+fi
+
+cvs update 2>&1 | while read operation file; do
+	case $operation in
+		"U")
+			UPDATES=$((UPDATES + 1))
+			;;
+		"P")
+			PATCHED=$((PATCHED + 1))
+			;;
+		"M")
+			MERGED=$((MERGED + 1 ))
+			;;
+		"C")
+			CONFLICTED=$((CONFLICTED + 1))
+			CONFLICTED_FILES="${CONFLICTED_FILES} $file"
+			;;
+	esac
+	if [ -n "$VERBOSE" ]; then
+		echo $operation $file
+	fi
+done
+
+echo "$UPDATES files added, $PATCHED files patched, $MERGED files merged" 
+if [ -n "$CONFLICTED_FILES" ]; then 
+	echo "$CONFLICTED conflicts found:"
+	for f in $CONFLICTED_FILES; do
+		echo "    $f"
+	done
+fi
