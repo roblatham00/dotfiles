@@ -1,5 +1,18 @@
 bindkey -v
-eval `dircolors`
-eval `lesspipe`
 
-export PATH=${PATH}:/usr/sbin:/sbin:/usr/local/sbin
+# some history notes from epg@pretzelnet.org
+HISTSIZE=50000
+HISTFILE=~/.history_zsh
+SAVEHIST=$HISTSIZE
+setopt HIST_IGNORE_ALL_DUPS     # Bye-bye duplicates.
+setopt HIST_REDUCE_BLANKS       # Bye-bye extraneous whitespace.
+
+eval `dircolors`
+
+#eval `lesspipe`
+export LESSPIPE=/usr/bin/lesspipe.sh
+export LESSCHARSET=latin1
+
+export CVS_RSH=ssh
+
+export PATH=${HOME}/bin:${PATH}:/usr/sbin:/sbin:/usr/local/sbin
