@@ -5,26 +5,4 @@
 #   checks if there is a screen daemon running, if not, starts one
 #   then exec's a screen session attaching to it
 
-SCREENID=$(hostname).daemon
-
-# Err... if there's no screen, we're fsck'd
-which screen >/dev/null || {
-    echo $(basename $0)": AIEEE! screen is not in path!" 1>&2
-    exit 1
-}
-
-# find the running daemon if it exists
-finddaemon() {
-    screen -ls | grep $SCREENID | (read session state ; echo $session)
-}
-
-DAEMON=$(finddaemon)
-
-[ -z "$DAEMON" ] && {
-    # daemon
-    exec screen -S $SCREENID
-} || {
-    # attach to daemon
-    exec screen -x $DAEMON "$@"
-}
-
+exec screen -A -x -RR "$@"
