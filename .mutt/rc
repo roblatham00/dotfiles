@@ -17,6 +17,8 @@ set timeout=60
 set index_format="%4C %Z %{%b %d %H:%M} %-15.15L [%4c] %s"
 
 set metoo=no
+my_hdr Mail-Copies-To: nobody
+my_hdr X-No-CC: I subscribe to this list\; do not CC me on replies. 
 
 # sven gluckes is an rc file pimp master
 ## Command ignore :
