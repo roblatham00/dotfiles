@@ -1,0 +1,237 @@
+#!/usr/bin/perl
+#   color_cvs .03   Adrian Likins <adrian@gimp.org> <adrian@redhat.com>
+#   COpyright (C) 1999 Adrian Likins
+#
+# as far as i know, this requires cvs version 1.10.2
+#
+# It also requires the ANSIColor perl module from:
+#   http://www.cpan.org/modules/by-module/Term/
+#
+# and the Term::Size module from the same place
+#
+# For now, to use:
+#
+#  in bash:
+#       color_cvs -z3 update -Pd 
+#       (or however you would call cvs normally)
+#
+# At the moment, it only does anything useful on update's, otherwise
+# it just calls cvs like normal
+#
+# Oh yeah, this is released under the GPL.
+#
+#   .02 first release
+#   .03 added term handlign stuff, and saner regexps
+#   .04 made it actually detect merge conflicts correctly
+#
+use strict;
+use Term::ANSIColor;
+use IPC::Open3;
+use FileHandle;
+
+# code stolem from the perl cookbook
+my ($rows,$item,$tmp_cols,$cols);
+my ($cvs_args,$fh,$wfh);
+my(@conflicts, @updated,@changed, @local_changed,@patched,@not_in_tree,@added,@removed);
+my($num_conflicts, $num_updated, $num_local_changed, $num_patched, $num_not_in_tree, $num_added, $num_removed);
+my($list_item,$found,$match);
+
+($cols, $rows) = (`stty size`);
+
+$cvs_args = join(" ", @ARGV);
+# This is ugly as sin, but I only do stuff on certain cvs invocations
+foreach (@ARGV) {
+  if (/update/)
+    {
+      $match = $_;
+      $found =1;
+      last;
+    }
+}
+
+# this opens the command with wfh for stdin, and CVS for stderr and stdout
+open3(\*wfh,\*CVS,\*CVS, "cvs $cvs_args") || die "aieee!\n";
+if($match eq 'update'){
+
+  #filter the output for info...
+  update_scan();
+  print "\n";
+  print_update_info();
+
+}else
+  # if not doing anything else, just print out every line we get...
+  {
+    while(<CVS>)
+      {
+	print;
+      }
+  }
+
+# end of if found
+#subrouting to check whether at last item on line
+
+sub print_pretty {
+  my @list_of_files  = @_;
+  my ($maxlen,$mask);
+  $maxlen =1;
+  foreach (@list_of_files){
+    my $mylen;
+    s/\s+$//;
+    $maxlen = $mylen if (($mylen = length) > $maxlen);
+  }
+  $maxlen += 1;
+  $tmp_cols = int($cols /$maxlen) || 1;
+  $rows = int(($#list_of_files+$tmp_cols) / $tmp_cols);
+  
+  $mask = sprintf("%%-%ds ", $maxlen-1);
+  for ($item = 0; $item < $rows * $tmp_cols; $item++) {
+    my $target =  ($item % $tmp_cols) * $rows + int($item/$tmp_cols);
+    my $piece = sprintf($mask, $target < @list_of_files ? $list_of_files[$target] : "");
+    $piece =~ s/\s+$// if  EOL();  # don't blank-pad to EOL
+    print $piece;
+    print "\n" if EOL();
+  }       
+  print "\n" if EOL();   
+}
+
+
+
+
+sub EOL { ($item+1) % $tmp_cols == 0 }  
+
+
+
+
+
+# subrouting to process/filter all the info a cvs update geenrates 
+sub update_scan{
+  
+ while(<CVS>)
+    {
+      if(/^U\b(.*?)/){
+	s/^U\s*(\S*)//;
+	print color("blue reverse"), "Updated: ", color("reset"), "$1";
+	push(@updated, $1);
+      }
+      
+
+      if(/^M\b(.*?)/){
+	s/^M\s*(\S*)//;
+	print color("green"), "Locally Modifed: ", color("reset"), "$1";
+	push(@local_changed, $1);
+      }
+      
+      if(/^P\b(.*?)/){
+	s/^P\s*(\S*)//;
+	print color("bold blue"), "Patched: ", color("reset"), "$1";
+	push(@patched, $1);
+      }
+      
+      if(/^\?(.*?)/){
+	s/^\?(.*)//;
+	print color("magenta bold"), "Not in cvs tree: ", color("reset"), "$1";
+	push(@not_in_tree, $1);
+	
+      }
+      
+      if(/^A\b(.*?)/){
+	s/^A\s*(\S*)//;
+	print color("white on_blue"), "Added: ", color("reset"), "$1";
+	push(@added, $1);
+      }
+      
+      if(/^R\b(.*?)/){
+	s/^R\s*(\S*)//;
+	print color("white on_red"), "Removed from local: ", color("reset"), "$1";
+	push(@removed, $1);
+      }
+
+      if(/^C\b(.*?)/){
+	s/^C\s*(\S*)//;
+	print color("red bold"), "Conflicts were merged in: ", color("reset"), "$1";
+	push(@conflicts, $1);
+      }
+      
+      
+      print;
+    }
+}
+
+
+
+
+# subroutine to print out all the info found in update_scan()
+sub print_update_info {
+  # this chunk should probabaly be some where else, but feh...
+  $num_conflicts =scalar(@conflicts);
+  $num_updated = scalar(@updated);
+  $num_local_changed = scalar(@local_changed);
+  $num_patched = scalar(@patched);
+  $num_not_in_tree = scalar(@not_in_tree);
+  $num_added= scalar(@added);
+  $num_removed = scalar(@removed);
+
+  if($num_not_in_tree != 0){
+    print "$num_not_in_tree files were local but not in the cvs tree:\n";
+    print "========================================================\n";
+    print color("magenta");
+    print_pretty(@not_in_tree);
+    print color("reset");
+    print "========================================================\n\n";
+  }
+  
+  if($num_removed != 0){
+    print"$num_removed files were removed:\n";
+    print "========================================================\n";
+    print color("red");
+    print_pretty(@removed);
+    print color("reset"), "========================================================\n\n";
+  }
+  
+  if($num_updated != 0){
+    print "$num_updated files were updated:\n";
+    print "========================================================\n";
+    print color("blue");
+    print_pretty(@updated);
+    print color("reset");
+    print "========================================================\n\n";
+  }
+  if($num_local_changed != 0){
+    print "$num_local_changed files were changed locally:\n";
+    print "========================================================\n";
+    print color("green");
+    print_pretty(@local_changed);
+    print color("reset");
+    print "========================================================\n\n";
+  }
+  
+  if($num_patched != 0){
+    print "$num_patched files were patched:\n";
+    print "========================================================\n";
+    print color("bold blue");
+    print_pretty(@patched);
+    print color("reset");
+    print "========================================================\n\n";
+  }
+  
+
+
+  if($num_added != 0){
+    print "$num_added files have been added but not committed:\n";
+    print "========================================================\n";
+    print color("blue");
+    print_pretty(@added);
+    print color("reset");
+    print "========================================================\n\n";
+  }
+  # add this last since this is the most important
+  if($num_conflicts != 0){
+    print"$num_conflicts files had merge conflicts that need to be resolved:\n";
+    print "========================================================\n";
+    print color("red bold");
+    print_pretty(@conflicts);
+    print color("reset"), "========================================================\n\n";
+  }
+}
+
+
