@@ -30,7 +30,7 @@ color index brightgreen default ~N
 color index brightyellow default ~F
 color index green default ~O
 color index   brightwhite    default     ~z>15k   # Subject headers of all mails larger than 15k are brightwhite in the index.
-color index magenta default ~h X-Spam-Status:\ Yes  # spamassassin 
+color index magenta default '~h X-Spam-Status:\ Yes'  # spamassassin 
 color index brightred default ~D
 color index yellow default ~T
 # example of hilighting for a special case
