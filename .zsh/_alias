@@ -7,6 +7,8 @@ alias sagu="sudo apt-get update"
 alias sagi="sudo apt-get install"
 alias sagdu="sudo apt-get -u dist-upgrade"
 
+alias cupdate="color_cvs update"
+alias cbuild="find . -iname \*.\[ch] > cscope.files && cscope -be -i cscope.files"
 pup() {
 	psnup -Pletter -2 $1 ${1%.*}-2.ps
 }
@@ -14,6 +16,7 @@ pup() {
 # site options, with machine-specific overrides
 SITE_ALIAS=${HOME}/.zsh/alias.$(h=$(hostname); echo ${h#*.})
 LOCAL_ALIAS=${HOME}/.zsh/alias.$(hostname -s)
+
 [ -f ${SITE_ALIAS} ] && . ${SITE_ALIAS}
 [ -f ${LOCAL_ALIAS} ] && . ${LOCAL_ALIAS}
 
