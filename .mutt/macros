@@ -1,0 +1,2 @@
+# vim:syntax=muttrc
+macro index S "|spamassassin -r" "report message as spam"
