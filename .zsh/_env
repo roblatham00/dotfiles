@@ -24,7 +24,9 @@ export LESSCHARSET=latin1
 
 export EDITOR=vim
 export CVS_RSH=ssh
+export RSYNC_RSH=ssh
 
+# use ccache if installed
 which ccache >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	export CC="ccache gcc"
@@ -32,6 +34,9 @@ if [ $? -eq 0 ]; then
 	export FC="ccache g77"
 	export CCACHE_DIR=/var/tmp/`whoami`/ccache
 fi
+
+# i get tired of typing in the same valgrind opts over and over 
+export VALGRIND_OPTS="--leak-check=yes"
 
 # machine specific overrides for site settings
 SITE_ENV=~/.zsh/env.$(h=`hostname`; echo ${h#*.})  # hosname -d replacement
