@@ -7,6 +7,11 @@ SAVEHIST=$HISTSIZE
 setopt HIST_IGNORE_ALL_DUPS     # Bye-bye duplicates.
 setopt HIST_REDUCE_BLANKS       # Bye-bye extraneous whitespace.
 
+# woo! vi editing of cmd line
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 export PATH=${HOME}/bin:${PATH}:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/pkg/bin:/usr/pkg/sbin:/sw/bin:/usr/X11R6/bin
 
 # helper binaries
@@ -32,4 +37,4 @@ LOCAL_ENV=~/.zsh/env.`hostname`
 [ -f $SITE_ENV ] && . $SITE_ENV
 [ -f $LOCAL_ENV ] && . $LOCAL_ENV
 
-#vim: syntax=zsh
+# vim:syntax=zsh
