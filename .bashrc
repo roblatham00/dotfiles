@@ -18,3 +18,8 @@ if [ "$PS1" ]; then
 
     PS1='\u@\h:\w\$ '
 fi
+
+# i've grown quite fond of zsh, but i need to use bash on some systems.  make
+# it moderately useful
+CVS_RSH=ssh
+set -o vi
