@@ -16,4 +16,5 @@ which lesspipe >/dev/null 2>&1 && eval `lesspipe`
 which lesspipe.sh >/dev/null 2>&1 && eval `lesspipe.sh`
 export LESSCHARSET=latin1
 
+export EDITOR=vim
 export CVS_RSH=ssh
