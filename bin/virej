@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# given a .rej file, edit the source file and the reject (not the .orig)
+# given several .rej files, proceed serially
+# given stdin, i don't know what to do
+
+[ $# -lt 1 ] && echo "virej <reject> [<reject> ...]" && exit
+
+for REJ in $*; do
+	case ${EDITOR:-vim} in 
+		vim)
+			vim -o ${REJ%.*} $REJ	;;
+		*)
+			echo "unsupported editor" && exit ;; 		
+	esac
+done
