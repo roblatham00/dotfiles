@@ -29,11 +29,12 @@ color body   magenta  default  "(mailto:)?[^[ =^:#,+\t\n<>()@\"]+@[^] =:/^#,\t\n
 color index brightgreen default ~N
 color index brightyellow default ~F
 color index green default ~O
+color index   brightwhite    default     ~z>15k   # Subject headers of all mails larger than 15k are brightwhite in the index.
+color index magenta default ~h X-Spam-Status:\ Yes  # spamassassin 
 color index brightred default ~D
 color index yellow default ~T
 # example of hilighting for a special case
 #color index brightred white '(~f Plaid|~f els6|~f cows_moo)'
-color index   brightwhite    default     ~z>15k   # Subject headers of all mails larger than 15k are brightwhite in the index.
 
 # Different colors for 8 levels of quoting:
 
