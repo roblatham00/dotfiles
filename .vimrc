@@ -16,6 +16,12 @@ set viminfo='20,\"50	" read/write a .viminfo file, don't store more
 set history=50		" keep 50 lines of command line history
 set bg=dark
 "set ruler		" show the cursor position all the time
+set wrap
+set sm
+set notbs		" can't sort the tags the right way, so i give up
+set nohls
+set ignorecase
+set smartcase
 
 " For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
 " let &guioptions = substitute(&guioptions, "t", "", "g")
@@ -40,6 +46,8 @@ if has("autocmd")
  autocmd BufRead *.java set tw=78 sw=4 ts=4
 
  autocmd BufRead mutt-*-*-* so ${HOME}/.vimrc-mutt
+ " source ${HOME}/.vimrc-cscope not quite working yet
+
  " let's try this:  in mutt, i want a text width of 70:
 " autocmd BufRead mutt-*-*-* set tw=70 
  " removes quotes sigs (with -- or string of == or __ as delimiter)
@@ -120,3 +128,6 @@ if version >=600
     endif
 endif
 
+if version >= 508
+  set pastetoggle=<F10>      " toggle :paste setting
+endif
