@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# not sure of any better way to get the % charge from the cmd line
+get_percent() {
+	echo $(tr -d % < /proc/apm | cut -f' ' -d 7 )
+}
+
+START_TIME=$(date +%s)
+START_PERCENT=get_percent
+snooze 
+END_TIME=$(date +%s )
+END_PERCENT=get_percent
+
+# so assuming you were actually on batter while snoozing, we'll compute 
+# percent drain per minute.  the scale might be 8, but we really only get 2 or 
+# 3 significant figures
+echo "scale=8
+( $START_PERCENT - $END_PERCENT ) / ( ($END_TIME - $START_TIME)/60 )" | bc
