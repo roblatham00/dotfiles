@@ -13,3 +13,13 @@ showdat() {
 getmpich2req() {
 	mpich2reqshow $1 | formail -ds
 }
+
+# 8 hour timeout on keys
+# list all keys on all systems here. ssh-add will just ignore anything that
+# doesn't exist and i'm assuming it's not harmful to tell the world the
+# filename name of my private keys.
+SSH_AGENT_TIMEOUT="-t $((60*60*8))"
+alias sad="ssh-add $SSH_AGENT_TIMEOUT ~/.ssh/id_dsa ~/.ssh/id_rsa ~/.ssh/id_dsa_ornl ~/.ssh/id_rsa_ornl"
+
+
+# vim:syntax=zsh

@@ -15,12 +15,6 @@ alias cupdate="color_cvs update"
 alias ccu="color_cvs update"
 alias cbuild="find . -iname \*.\[chylsi] > cscope.files && cscope -be -i cscope.files"
 
-# 8 hour timeouts on ssh keys
-# list all keys on all systems here. ssh-add will just ignore anything that
-# doesn't exist and i'm assuming it's not harmful to tell the world the
-# filename name of my private keys.
-alias sad="ssh-add -t $((60*60*8)) ~/.ssh/id_dsa ~/.ssh/id_rsa ~/.ssh/id_dsa_ornl ~/.ssh/id_rsa_ornl"
-
 pup() {
 	psnup -Pletter -2 $1 ${1%.*}-2.ps
 }
@@ -57,5 +51,6 @@ LOCAL_ALIAS=${HOME}/.zsh/alias.$(hostname -s)
 
 [ -f ${SITE_ALIAS} ] && . ${SITE_ALIAS}
 [ -f ${LOCAL_ALIAS} ] && . ${LOCAL_ALIAS}
+
 
 # vim:syntax=zsh
