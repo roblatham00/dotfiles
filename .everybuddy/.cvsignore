@@ -1,2 +1,4 @@
 files
 logs
+.lock
+eb_socket
