@@ -14,8 +14,10 @@ bindkey -M vicmd v edit-command-line
 
 export PATH=${HOME}/bin:${PATH}:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/pkg/bin:/usr/pkg/sbin:/sw/bin:/usr/X11R6/bin
 
+export SHELL=`which zsh`
+
 # helper binaries
-which dircolors >/dev/null 2>&1 &&  eval `dircolors`
+which dircolors >/dev/null 2>&1 &&  eval `dircolors -b`
 which lesspipe >/dev/null 2>&1 && eval `lesspipe`
 
 export LESSCHARSET=latin1
