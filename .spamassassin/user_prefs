@@ -1,0 +1,32 @@
+# SpamAssassin user preferences file.  See 'man Mail::SpamAssassin::Conf' for
+# details of what can be tweaked.
+#* 
+#* If this file is in /usr/share/spamassassin or /etc/spamassassin it will
+#* NEVER BE READ. Instead it is copied into a user's home directory for
+#* personalised customisation. To change site-wide defaults, add or edit a file
+#* in /etc/spamassassin.
+###########################################################################
+
+# How many hits before a mail is considered spam.
+# required_hits		5
+
+# Whitelist and blacklist addresses are now file-glob-style patterns, so
+# "friend@somewhere.com", "*@isp.com", or "*.domain.net" will all work.
+# whitelist_from	someone@somewhere.com
+whitelist_from	support@datek.com
+whitelist_from  slickedup9s@yahoo.com
+whitelist_from  info@overstock.com
+
+# Add your own customised scores for some tests below.  The default scores are
+# read from the installed spamassassin rules files, but you can override them
+# here.  To see the list of tests and their default scores, go to
+# http://spamassassin.org/tests.html .
+#
+# score SYMBOLIC_TEST_NAME n.nn
+
+
+# i use mutt to flag it w/ colors
+rewrite_subject 0 
+
+# would prefer to keep body as untouched as possible
+report_header 1
