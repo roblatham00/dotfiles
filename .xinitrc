@@ -19,15 +19,17 @@ elif [ -x /usr/libexec/openssh/x11-ssh-askpass ] ; then
 	export SSH_ASKPASS=/usr/libexec/openssh/x11-ssh-askpass
 elif [ -x /usr/lib/ssh/gnome-ssh-askpass ] ; then
 	export SSH_ASKPASS=/usr/lib/ssh/gnome-ssh-askpass
+elif [ -x ${HOME}/libexec/x11-ssh-askpass ] ; then
+	export SSH_ASKPASS=${HOME}/libexec/x11-ssh-askpass
 fi
+
 [ ! "$SSH_AGENT_PID" ] && eval `ssh-agent -s`
 # evidenlty on some systems (gentoo for one), programs *do* have a controlling
 # terminal when run from xinit
-DISPLAY=:0 ssh-add ${HOME}/.ssh/identity ${HOME}/.ssh/id_rsa ${HOME}/.ssh/id_dsa </dev/null
+DISPLAY=:0 ssh-add -t 3600 ${HOME}/.ssh/identity ${HOME}/.ssh/id_rsa ${HOME}/.ssh/id_dsa </dev/null
 
 # extra programs: sawfish only manages windows
 ${HOME}/.xinitrc-`hostname -s`
-gkrellm &
-lavaps &
+(sleep 1 && gkrellm )&
+(sleep 1 && lavaps ) &
 exec sawfish
-
