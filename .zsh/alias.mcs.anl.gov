@@ -8,3 +8,8 @@ alias qsub-int="qsub -A grp-sio -I"
 showdat() {                                                  
 	cut -d' ' -f 1,5,6,10,11,15 < $1 | grep -v '^#'
 }
+
+# nicely format an mpich2req
+getmpich2req() {
+	mpich2reqshow $1 | formail -ds
+}
