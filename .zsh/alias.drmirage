@@ -1,0 +1,2 @@
+alias ls='gnuls --color=auto'
+alias la='gnuls --color=auto -a'
