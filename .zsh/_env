@@ -35,9 +35,6 @@ if [ $? -eq 0 ]; then
 	export CCACHE_DIR=/var/tmp/`whoami`/ccache
 fi
 
-# i get tired of typing in the same valgrind opts over and over 
-export VALGRIND_OPTS="--leak-check=yes"
-
 # machine specific overrides for site settings
 SITE_ENV=~/.zsh/env.$(h=`hostname`; echo ${h#*.})  # hosname -d replacement
 LOCAL_ENV=~/.zsh/env.`hostname -s`
