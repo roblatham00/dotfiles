@@ -6,7 +6,7 @@ alias sagu="sudo apt-get update"
 alias sagi="sudo apt-get install"
 alias sagdu="sudo apt-get -u dist-upgrade"
 
-LOCAL_ALIAS=${HOME}/.zsh/_alias.`hostname -s`
+LOCAL_ALIAS=${HOME}/.zsh/alias.`hostname -s`
 [ -f ${LOCAL_ALIAS} ] && . ${LOCAL_ALIAS}
 
 #vim:st=zsh
