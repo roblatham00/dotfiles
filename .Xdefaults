@@ -14,6 +14,7 @@ rxvt*foreground:	white
 rxvt*loginShell:	true
 rxvt*visualBell:	true
 rxvt*saveLines:		9000
+rxvt*cutchars:  `"´()*,;<>@[]{|}
 rxvt*color0:    #000000
 rxvt*color1:    #a80000
 rxvt*color2:    #00a800
