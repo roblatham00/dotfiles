@@ -17,3 +17,6 @@ export LESSCHARSET=latin1
 
 export EDITOR=vim
 export CVS_RSH=ssh
+
+LOCAL_ENV=~/.zsh/env.`hostname`
+[ -f $LOCAL_ENV ] && . $LOCAL_ENV
