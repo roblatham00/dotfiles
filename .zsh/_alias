@@ -12,8 +12,8 @@ pup() {
 }
 
 # site options, with machine-specific overrides
-SITE_ALIAS=${HOME}/.zsh/alias.`h=`hostname`; echo ${h#*.}`
-LOCAL_ALIAS=${HOME}/.zsh/alias.`hostname -s`
+SITE_ALIAS=${HOME}/.zsh/alias.$(h=$(hostname); echo ${h#*.})
+LOCAL_ALIAS=${HOME}/.zsh/alias.$(hostname -s)
 [ -f ${SITE_ALIAS} ] && . ${SITE_ALIAS}
 [ -f ${LOCAL_ALIAS} ] && . ${LOCAL_ALIAS}
 
