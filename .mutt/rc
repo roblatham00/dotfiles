@@ -15,13 +15,13 @@ set sort=threads
 set pager_index_lines=10
 set timeout=60
 
-set index_format="%4C %Z %{%b %d %H:%M} %-15.15L [%4c] %s"
+set markers=no 			# get rid of those damn '+' chars
+
+set index_format="%4C %Z %{%b %d %H:%M} %-15.15F [%4c] %s"
 # this folder_format could use some tweaking
 set folder_format="%2C %t %N %-35f %20.20d"                                    
 
 set metoo=no
-my_hdr Mail-Copies-To: nobody
-my_hdr X-No-CC: I subscribe to this list\; do not CC me on replies. 
 
 alternative_order text/plain text/html
 auto_view text/html
