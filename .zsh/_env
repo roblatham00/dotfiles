@@ -7,12 +7,11 @@ SAVEHIST=$HISTSIZE
 setopt HIST_IGNORE_ALL_DUPS     # Bye-bye duplicates.
 setopt HIST_REDUCE_BLANKS       # Bye-bye extraneous whitespace.
 
-eval `dircolors`
+export PATH=${HOME}/bin:${PATH}:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/pkg/bin:/usr/pkg/sbin:/sw/bin:/usr/X11R6/bin
 
-#eval `lesspipe`
-export LESSPIPE=/usr/bin/lesspipe.sh
+# helper binaries
+which dircolors >/dev/null 2>&1 &&  eval `dircolors`
+which lesspipe >/dev/null 2>&1 && eval `lesspipe`
 export LESSCHARSET=latin1
 
 export CVS_RSH=ssh
-
-export PATH=${HOME}/bin:${PATH}:/usr/sbin:/sbin:/usr/local/sbin
