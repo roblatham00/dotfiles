@@ -1,9 +1,8 @@
-#!/bin/sh
-#xset m 7 5
+#!/bin/sh -xv
 xset +dpms
 
-if [ -r .xmodmap-`hostname` ]; then
-	xmodmap ~/.xmodmap-`hostname`
+if [ -r .xmodmap-`hostname -s ` ]; then
+	xmodmap ~/.xmodmap-`hostname -s`
 fi
 
 XDEFAULTS_GENERAL=.Xdefaults
@@ -18,14 +17,16 @@ if [ -x /usr/lib/ssh/x11-ssh-askpass ] ; then
 	export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
 elif [ -x /usr/libexec/openssh/x11-ssh-askpass ] ; then
 	export SSH_ASKPASS=/usr/libexec/openssh/x11-ssh-askpass
+elif [ -x /usr/lib/ssh/gnome-ssh-askpass ] ; then
+	export SSH_ASKPASS=/usr/lib/ssh/gnome-ssh-askpass
 fi
-[ ! "$SSH_AGENT_PID" ] && eval `ssh-agent`
-DISPLAY=unix:0 ssh-add ${HOME}/.ssh/identity ${HOME}/.ssh/id_rsa ${HOME}/.ssh/id_dsa
-
-/usr/bin/xscreensaver -lock-mode &
+[ ! "$SSH_AGENT_PID" ] && eval `ssh-agent -s`
+# evidenlty on some systems (gentoo for one), programs *do* have a controlling
+# terminal when run from xinit
+DISPLAY=:0 ssh-add ${HOME}/.ssh/identity ${HOME}/.ssh/id_rsa ${HOME}/.ssh/id_dsa </dev/null
 
 # extra programs: sawfish only manages windows
-${HOME}/.xinitrc-`hostname`
+${HOME}/.xinitrc-`hostname -s`
 gkrellm &
 lavaps &
 exec sawfish
