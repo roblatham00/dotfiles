@@ -1,4 +1,4 @@
 cvs -z1
 update -Pd 
-diff -uw
+diff -uwp
 checkout -P
