@@ -1,0 +1,10 @@
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle :compinstall filename '/home/rob/.zshrc'
+
+if [[ "$ZSH_VERSION" == (3.1|4)* ]]; then
+	autoload -U compinit
+	compinit -d "${HOME}/.zcompdump.${WHATAMI}"
+	zmodload -i zsh/complist
+fi
+
+# vim: syntax=zsh
