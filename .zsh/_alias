@@ -1,2 +1,7 @@
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
+alias acs="apt-cache search"
+alias acsh="apt-cache show"
+alias sagu="sudo apt-get update"
+alias sagi="sudo apt-get install"
+alias sagdu="sudo apt-get -u dist-upgrade"
