@@ -4,6 +4,7 @@ set copy=yes   # save copy of outgoing
 set edit_headers
 set delete=yes		# don't prompt deletion
 set move=yes		# don't prompt to move 
+set confirmappend=no
 
 set editor="vim"
 set help
@@ -15,6 +16,8 @@ set pager_index_lines=10
 set timeout=60
 
 set index_format="%4C %Z %{%b %d %H:%M} %-15.15L [%4c] %s"
+# this folder_format could use some tweaking
+set folder_format="%2C %t %N %-35f %20.20d"                                    
 
 set metoo=no
 my_hdr Mail-Copies-To: nobody
