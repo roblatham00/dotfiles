@@ -12,9 +12,24 @@ alias vg_leak="valgrind --leak-check=yes --num-callers=12 --show-reachable=yes"
 
 alias cupdate="color_cvs update"
 alias ccu="color_cvs update"
-alias cbuild="find . -iname \*.\[ch] > cscope.files && cscope -be -i cscope.files"
+alias cbuild="find . -iname \*.\[chylsi] > cscope.files && cscope -be -i cscope.files"
+
 pup() {
 	psnup -Pletter -2 $1 ${1%.*}-2.ps
+}
+
+# stolen from laz 
+..() {
+    local dir
+    if [ $# -lt 1 ]; then
+        cd ..
+    else
+        while [ $1 -gt 0 ]; do
+            dir="../${dir}"
+            1=$(($1 - 1))
+        done
+        cd "${dir}"
+    fi
 }
 
 # site options, with machine-specific overrides
