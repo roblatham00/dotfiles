@@ -1,3 +1,12 @@
 set alias_file=~/.mutt/aliases
+
+alias phil Phil Carns <pcarns@parl.clemson.edu>
+alias pvfs-devel pvfs-developers@beowulf-underground.org
+alias mpich gropp,ashton,lusk,thakur,chan,rross,toonen,karonis,patrick@myri.com
+alias bryce Bryce Campbell <campbellb@cmt.anl.gov>
+alias murali Murali Vilayannur <vilayann@mcs.anl.gov>
+alias jianwei Jianwei Li <jianwei@ece.nwu.edu>
+alias netcdf rross,thakur,gropp,wkliao@ece.northwestern.edu,jianwei,choudhar@ece.nwu.edu
+alias pvfs2 pvfs2-internal@beowulf-underground.org
 alias christine Christine Latham <christinelatham@hotmail.com>
 alias danbaker Dan Baker <danielbaker1@juno.com>
