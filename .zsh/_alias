@@ -9,10 +9,17 @@ alias sagdu="sudo apt-get -u dist-upgrade"
 alias sagU="sudo apt-get -u upgrade"
 
 alias vg_leak="valgrind --leak-check=yes --num-callers=12 --show-reachable=yes"
+alias memcheck="valgrind --tool=memcheck"
 
 alias cupdate="color_cvs update"
 alias ccu="color_cvs update"
 alias cbuild="find . -iname \*.\[chylsi] > cscope.files && cscope -be -i cscope.files"
+
+# 8 hour timeouts on ssh keys
+# list all keys on all systems here. ssh-add will just ignore anything that
+# doesn't exist and i'm assuming it's not harmful to tell the world the
+# filename name of my private keys.
+alias sad="ssh-add -t $((60*60*8)) ~/.ssh/id_dsa ~/.ssh/id_rsa ~/.ssh/id_dsa_ornl ~/.ssh/id_rsa_ornl"
 
 pup() {
 	psnup -Pletter -2 $1 ${1%.*}-2.ps
@@ -31,6 +38,7 @@ pup() {
         cd "${dir}"
     fi
 }
+
 
 # site options, with machine-specific overrides
 # this sucks. 'hostname -d' isn't *always* around, but sometimes, it's the only
