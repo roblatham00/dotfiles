@@ -10,6 +10,9 @@
 # Right : RIGHT, ^[[C
 # Left  : LEFT, ^[[D
 
+keymap	X	DISPLAY_IMAGE
+keymap	C-c	STOP_IMAGE
+keymap	t	SET_OPTION display_image=toggle
 keymap	C-@	MARK
 keymap	C-a	LINE_BEGIN
 keymap	C-b	MOVE_LEFT
