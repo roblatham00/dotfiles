@@ -13,7 +13,7 @@ rxvt*background:	black
 rxvt*foreground:	white
 rxvt*loginShell:	true
 rxvt*visualBell:	true
-rxvt*saveLines:		9000
+rxvt*saveLines:		100
 rxvt*cutchars:  `"'´()*,;<>[]{|}
 rxvt*color0:    #000000
 rxvt*color1:    #a80000
@@ -98,6 +98,8 @@ lavaps.geometry:	84x306+1063+306
 !xpdf.t1CourierBoldOblique:   /usr/lib/ghostscript/fonts/n022024l.pfb
 !xpdf.t1Symbol:               /usr/lib/ghostscript/fonts/s050000l.pfb
 !xpdf.t1ZapfDingbats:         /usr/lib/ghostscript/fonts/d050000l.pfb
+
+xpdf.viKeys: true
 
 ! damn, wish i knew about this one earlier
 *customization: -color
