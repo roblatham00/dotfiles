@@ -8,8 +8,12 @@ endfunction()
 
 " removes quotes sigs (with -- or string of == or __ as delimiter)
 " g/^> *[-_=]\{2,} *$/,/^$/-1dgg/^$<CR>
-g/^> *[-_]\{2,} *$/,/^$/-1d
+" g/^> *[-_]\{2,} *$/,/^$/-1d
+g/^> *[-]\{2,} $/,/^$/-1d
 
 " macro for ROT13
 noremap ,rot :0:/^$/,/-- $/!tr A-Za-z N-ZA-Mn-za-m/^Subject:dw:.!tr A-Za-z N-ZA-Mn-za-m0P 
 noremap ,srot /^Subjectdw:.!tr A-Za-z N-ZA-Mn-za-m0P
+
+" this one rot13s the whole buffer. could be modified to filter just a region
+" 1G!G/usr/games/rot13
