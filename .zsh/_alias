@@ -6,6 +6,7 @@ alias acsh="apt-cache show"
 alias sagu="sudo apt-get update"
 alias sagi="sudo apt-get install"
 alias sagdu="sudo apt-get -u dist-upgrade"
+alias sagU="sudo apt-get -u upgrade"
 
 alias vg_leak="valgrind --leak-check=yes --num-callers=12 --show-reachable=yes"
 
