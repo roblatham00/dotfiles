@@ -18,7 +18,7 @@ export LESSCHARSET=latin1
 export EDITOR=vim
 export CVS_RSH=ssh
 
-which ccache >dev/null 2>&1
+which ccache >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	export CC="ccache gcc"
 	export CXX="ccache g++"
