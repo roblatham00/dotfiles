@@ -5,18 +5,26 @@
 # hell, show all the cvs activity, just dump final stats and 
 # conflicted files afterwards
 
+
+VERBOSE=""
+if [ x$1 = x"-v" ]; then
+	VERBOSE="yes"
+	export VERBOSE
+fi
+
+# shell "while read" loops suck:  modifications to the variables inside the
+# while loop are lost when you pipe data into the while loop, thus, i have to
+# process data inside a subshell ( the extra parens ) to keep everything in
+# scope
+
+cvs update 2>&1 | (
 UPDATES=0
 PATCHED=0
 MERGED=0
 CONFLICTED=0
 CONFLICTED_FILES=""
-VERBOSE=""
 
-if [ x$1 = x"-v" ]; then
-	VERBOSE="yes"
-fi
-
-cvs update 2>&1 | while read operation file; do
+while read operation file; do
 	case $operation in
 		"U")
 			UPDATES=$((UPDATES + 1))
@@ -44,3 +52,4 @@ if [ -n "$CONFLICTED_FILES" ]; then
 		echo "    $f"
 	done
 fi
+)
