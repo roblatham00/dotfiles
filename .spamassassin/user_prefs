@@ -16,6 +16,7 @@
 whitelist_from	support@datek.com
 whitelist_from  slickedup9s@yahoo.com
 whitelist_from  info@overstock.com
+whitelist_from  danielbaker1@juno.com
 
 # Add your own customised scores for some tests below.  The default scores are
 # read from the installed spamassassin rules files, but you can override them
