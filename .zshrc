@@ -7,6 +7,6 @@ autoload -U compinit
 compinit
 # End of lines added by compinstall
 
-for RC in ${HOME}/.zsh/*; do
+for RC in ${HOME}/.zsh/_*; do
 	. $RC
 done
