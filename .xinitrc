@@ -5,8 +5,8 @@ if [ -r .xmodmap-`hostname -s ` ]; then
 	xmodmap ~/.xmodmap-`hostname -s`
 fi
 
-XDEFAULTS_GENERAL=.Xdefaults
-XDEFAULTS_SPECIFIC=.Xdefaults-`hostname`
+XDEFAULTS_GENERAL=.Xsession
+XDEFAULTS_SPECIFIC=.Xsession-`hostname`
 
 for XDEF in $XDEFAULTS_GENERAL $XDEFAULTS_SPECIFIC; do
 	xrdb -merge $XDEF
@@ -24,12 +24,14 @@ elif [ -x ${HOME}/libexec/x11-ssh-askpass ] ; then
 fi
 
 [ ! "$SSH_AGENT_PID" ] && eval `ssh-agent -s`
-# evidenlty on some systems (gentoo for one), programs *do* have a controlling
-# terminal when run from xinit
-DISPLAY=:0 ssh-add -t 3600 ${HOME}/.ssh/identity ${HOME}/.ssh/id_rsa ${HOME}/.ssh/id_dsa </dev/null
+# - some environments (like MCS) want me to keep a lifetime on my keys.  Most
+#   of the time it's just annoying
+# - evidenlty on some systems (gentoo for one), programs *do* have a
+#   controlling terminal when run from xinit
+DISPLAY=:0 ssh-add ${SSH_AGENT_TIMEOUT} ${HOME}/.ssh/identity ${HOME}/.ssh/id_rsa ${HOME}/.ssh/id_dsa </dev/null
 
 # extra programs: sawfish only manages windows
 ${HOME}/.xinitrc-`hostname -s`
 (sleep 1 && gkrellm )&
 (sleep 1 && lavaps ) &
-exec sawfish
+exec gnome-session
