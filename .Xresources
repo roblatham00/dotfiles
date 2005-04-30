@@ -16,6 +16,8 @@ rxvt*visualBell:	true
 rxvt*saveLines:		100
 rxvt*cutchars:  `"'´()*,;<>[]{|}
 rxvt*geometry:          80x45
+rxvt*font:             lucida
+rxvt*scrollBar:        false
 rxvt*color0:    #000000
 rxvt*color1:    #a80000
 rxvt*color2:    #00a800
