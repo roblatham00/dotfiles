@@ -5,8 +5,8 @@ if [ -r .xmodmap-`hostname -s ` ]; then
 	xmodmap ~/.xmodmap-`hostname -s`
 fi
 
-XDEFAULTS_GENERAL=.Xsession
-XDEFAULTS_SPECIFIC=.Xsession-`hostname`
+XDEFAULTS_GENERAL=.Xresources
+XDEFAULTS_SPECIFIC=.Xresources-`hostname`
 
 for XDEF in $XDEFAULTS_GENERAL $XDEFAULTS_SPECIFIC; do
 	xrdb -merge $XDEF
