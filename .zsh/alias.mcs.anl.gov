@@ -1,6 +1,4 @@
 alias vi=vim
-alias view='vim -R'
-alias viz='vim -R -'
 alias viprocmail="vim /mcs/mail/config/robl/procmailrc"
 alias qsub-int="qsub -A grp-sio -I"
 

@@ -14,6 +14,8 @@ alias memcheck="valgrind --tool=memcheck"
 alias cupdate="color_cvs update"
 alias ccu="color_cvs update"
 alias cbuild="find . -iname \*.\[chylsi] > cscope.files && cscope -be -i cscope.files"
+alias view='vim -R'
+alias viz='vim -R -'
 
 pup() {
 	psnup -Pletter -2 $1 ${1%.*}-2.ps
