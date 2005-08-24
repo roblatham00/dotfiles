@@ -1,0 +1,6 @@
+synergy-mcs() {
+	ssh -f -N -L 24800:leela:24800 leela.mcs.anl.gov
+	synergyc localhost
+}
+
+# vim: ft=zsh
