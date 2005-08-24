@@ -1,27 +1,47 @@
 #!/bin/sh
 
-PVFS2_SRCDIR=${HOME}/src/pvfs2
-PVFS2_DIR=${HOME}/pvfs2
-BUILD_DIR=/scratch/local/robl/build
+PVFS2_DIR=${HOME}/work/soft/pvfs2
+BUILD_DIR=${HOME}/work/build
+PVFS2_SRCDIR=${HOME}/work/pvfs2
+MPICH2_SRCDIR=${HOME}/work/mpich2
 
-stuff() {
-	echo "===== updating pvfs2: ==== "
-	cd $PVFS2_SRCDIR && color_cvs update ||  return 1
+CFLAGS="-O2 -Wall -g"
 
-	echo "===== updating mpich1 ==== "
-	cd ~/src && rsync -Lavz  terra:/homes/robl/projects/mpich-cvs . \
-		|| return 1
-
-
-	echo "===== building pvfs2 ==== "
-	mkdir -p $BUILD_DIR/pvfs2 && cd $BUILD_DIR/pvfs2 || return 1
-	$PVFS2_SRCDIR/configure --prefix=$PVFS2_DIR \
-		--with-gm=/opt/gm-2.0.5-2.4.19-64GB-SMP-i686 && make \
-		&& make install || return 1
-
-	echo "==== building mpich ==== "
-	mkdir -p ${BUILD_DIR}/mpich1 && cd ${BUILD_DIR}/mpich1 || return 1
-	~/bin/mpichconfig && make && make install || return 1
+update_pvfs2() {
+        echo "===== updating pvfs2: ==== "
+        cd $PVFS2_SRCDIR && color_cvs update ||  return 1
 }
 
-stuff && echo "!all built!" || echo "check logs for failure"
+update_mpich2() {
+        echo "===== updating mpich2 ==== "
+        cd ${MPICH2_SRCDIR} && color_cvs update || return 1
+        #export M4=m4
+        #export AUTOCONF=~chan/autoconf/2.59/bin/autoconf
+        #export MPE_AUTOCONF=~chan/autoconf/2.59/bin/autoconf
+        #export AUTOHEADER=~chan/autoconf/2.59/bin/autoheader
+        #export MPE_AUTOHEADER=~chan/autoconf/2.59/bin/autoheader
+        ./maint/updatefiles
+}
+
+
+build_pvfs2() {
+        echo "===== building pvfs2 ==== "
+        mkdir -p $BUILD_DIR/pvfs2 && cd $BUILD_DIR/pvfs2 || return 1
+        $PVFS2_SRCDIR/configure --prefix=$PVFS2_DIR \
+                && make \
+                && make install || return 1
+}
+
+build_mpich2() {
+        echo "==== building mpich ==== "
+	export CFLAGS="-I${PVFS2_DIR}/include ${CFLAGS}"
+	export LDFLAGS="-L${PVFS2_DIR}/lib"
+	export LIBS="-lpvfs2 -lpthread"
+        mkdir -p ${BUILD_DIR}/mpich2 && cd ${BUILD_DIR}/mpich2 || return 1
+	${MPICH2_SRCDIR}/configure --prefix=${HOME}/work/soft/mpich2 \
+		--enable-romio --with-file-system=ufs+nfs+testfs+pvfs2 \
+		--enable-f77 --with-pm=gforker \
+         && make && make install || return 1
+}
+
+update_pvfs2 && update_mpich2 && build_pvfs2 && build_mpich2 && echo "build complteted at `date`" || echo "check logs for failure"
