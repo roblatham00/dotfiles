@@ -1,6 +1,6 @@
 #!/usr/bin/perl
-#   color_cvs .03   Adrian Likins <adrian@gimp.org> <adrian@redhat.com>
-#   COpyright (C) 1999 Adrian Likins
+#   color_cvs .05   Adrian Likins <adrian@gimp.org> <adrian@redhat.com>
+#   Copyright (C) 1999 Adrian Likins
 #
 # as far as i know, this requires cvs version 1.10.2
 #
@@ -23,9 +23,14 @@
 #   .02 first release
 #   .03 added term handlign stuff, and saner regexps
 #   .04 made it actually detect merge conflicts correctly
+#   .05 colorize diff output (in addition to update) <peter@pezaris.com>
 #
+
+#desc#  tools: Colorized cvs command wrapper.
+
 use strict;
 use Term::ANSIColor;
+#use Term::Size;
 use IPC::Open3;
 use FileHandle;
 
@@ -41,7 +46,7 @@ my($list_item,$found,$match);
 $cvs_args = join(" ", @ARGV);
 # This is ugly as sin, but I only do stuff on certain cvs invocations
 foreach (@ARGV) {
-  if (/update/)
+  if (/(update|diff)/)
     {
       $match = $_;
       $found =1;
@@ -57,6 +62,11 @@ if($match eq 'update'){
   update_scan();
   print "\n";
   print_update_info();
+
+}elsif($match eq 'diff'){
+
+  #filter the output for info...
+  diff_scan();
 
 }else
   # if not doing anything else, just print out every line we get...
@@ -157,6 +167,26 @@ sub update_scan{
     }
 }
 
+sub diff_scan {
+    while(<CVS>) {
+	if(/^(?:>|\+)/){
+	    print color("green"), $_, color("reset");
+	}
+	elsif(m/^(?:<|-)/) {
+	    print color("red"), $_, color("reset");
+	}
+	elsif(m/^(?:\d|\@\@)/) {
+	    print color("magenta"), $_, color("reset");
+	}
+	elsif(m/^(RCS file:)(.*)/) {
+	    print color("magenta"), $1, color("reset"), "$2\n";
+	}
+	else {
+	    print $_;
+	}
+    }
+}
+
 
 
 
@@ -233,5 +263,4 @@ sub print_update_info {
     print color("reset"), "========================================================\n\n";
   }
 }
-
 
