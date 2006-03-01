@@ -1,6 +1,8 @@
 defscrollback 99999
 # man do i hate flow control
 defflow off
+defnonblock on
+
 
 # argonne stuff
 source .screenrc.local
