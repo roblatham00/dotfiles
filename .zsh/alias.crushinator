@@ -3,4 +3,9 @@ synergy-mcs() {
 	synergyc localhost
 }
 
+renet() {
+	sudo iwconfig ath0 essid $1
+	sudo dhclient ath0
+}
+
 # vim: ft=zsh
