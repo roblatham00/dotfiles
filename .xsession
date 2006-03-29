@@ -31,7 +31,5 @@ fi
 DISPLAY=:0 ssh-add ${SSH_AGENT_TIMEOUT} ${HOME}/.ssh/identity ${HOME}/.ssh/id_rsa ${HOME}/.ssh/id_dsa </dev/null
 
 # extra programs: sawfish only manages windows
-${HOME}/.xinitrc-`hostname -s`
-(sleep 1 && gkrellm )&
-(sleep 1 && lavaps ) &
+[ -f ${HOME}/.xinitrc-`hostname -s`] && ${HOME}/.xinitrc-`hostname -s`
 exec gnome-session
