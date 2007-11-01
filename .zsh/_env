@@ -36,7 +36,6 @@ which ccache >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	export CC="ccache gcc"
 	export CXX="ccache g++"
-	export FC="ccache g77"
 	export CCACHE_DIR=/var/tmp/`whoami`/ccache
 fi
 
