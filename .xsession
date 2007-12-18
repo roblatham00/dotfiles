@@ -13,7 +13,9 @@ for XDEF in $XDEFAULTS_GENERAL $XDEFAULTS_SPECIFIC; do
 done
 
 # ssh agent
-if [ -x /usr/lib/ssh/x11-ssh-askpass ] ; then
+if [ -x /usr/bin/ssh-askpass ] ; then
+	export SSH_ASKPASS=/usr/bin/ssh-askpass
+elif [ -x /usr/lib/ssh/x11-ssh-askpass ] ; then
 	export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
 elif [ -x /usr/libexec/openssh/x11-ssh-askpass ] ; then
 	export SSH_ASKPASS=/usr/libexec/openssh/x11-ssh-askpass
