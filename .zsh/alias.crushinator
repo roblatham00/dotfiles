@@ -4,8 +4,8 @@ synergy-mcs() {
 }
 
 renet() {
-	sudo iwconfig ath0 essid $1
-	sudo dhclient ath0
+	sudo iwconfig $1 essid $2
+	sudo dhclient $1
 }
 
 # vim: ft=zsh
