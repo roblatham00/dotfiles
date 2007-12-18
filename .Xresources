@@ -14,64 +14,14 @@ rxvt*foreground:	white
 rxvt*loginShell:	true
 rxvt*visualBell:	true
 rxvt*saveLines:		100
-rxvt*cutchars:  `"'´()*,;<>[]{|}
 rxvt*geometry:          80x45
 rxvt*font:             lucida
 rxvt*scrollBar:        false
-rxvt*color0:    #000000
-rxvt*color1:    #a80000
-rxvt*color2:    #00a800
-rxvt*color3:    #a8a800
-rxvt*color4:    #0000a8
-rxvt*color5:    #a800a8
-rxvt*color6:    #00a8a8
-rxvt*color7:    #a8a8a8
-!
-rxvt*color8:    #000054
-rxvt*color9:    #ff0054
-rxvt*color10:   #00ff54
-rxvt*color11:   #ffff54
-rxvt*color12:   #0000ff
-rxvt*color13:   #ff00ff
-rxvt*color14:   #00ffff
-rxvt*color15:   #ffffff
+
+rxvt*color7:           grey66
 
 emacs*background:	black
 emacs*foreground:	white
-
-Netscape*noAboutSplash: True
-Netscape*blinkingEnabled:	False
-Netscape*background:	#000000
-Netscape*foreground:	green
-Netscape*XmTextField.background:		#D3B5B5
-Netscape*XmText.background:			#D3B5B5
-Netscape*XmList.background:			grey44
-Netscape*XmList.foreground:			green
-
-! for pixmaped-background in netscape:
-!Netscape*backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape*XmForm.backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape*XmFrame.backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape*XmRowColumn.backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape*XmSelectionBox.backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape*XmMessageBox.backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape*toolBarFrame*backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape*menuBar*backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-!Netscape.Navigator.form.dashBoard*backgroundPixmap: /home/rob/backgrounds/Granite.xpm
-
-Netscape.Navigator.geometry: =800x600
-Netscape.Mail.geometry: =500x460
-Netscape.News.geometry: =500x460
-Netscape.Composition.geometry: =620x460-0-0
-Netscape.Bookmarks.geometry: =300x460-0-0
-Netscape.AddressBook.geometry: =300x460-300-0
-Netscape.Download.geometry: =500x200-0-0
-
-Netscape*toolBar.destinations.isEnabled: false
-Netscape*toolBar.myshopping.isEnabled: false
-Netscape*toolBar.search.isEnabled: false
-Netscape*toolBar.viewSecurity.isEnabled: false
-
 
 xload*background:	black
 xload*foreground:	purple
@@ -86,23 +36,10 @@ xapm*foreground:	purple
 
 lavaps.geometry:	84x306+1063+306
 
-
-!xpdf.t1TimesRoman:           /usr/lib/ghostscript/fonts/n021003l.pfb
-!xpdf.t1TimesItalic:          /usr/lib/ghostscript/fonts/n021023l.pfb
-!xpdf.t1TimesBold:            /usr/lib/ghostscript/fonts/n021004l.pfb
-!xpdf.t1TimesBoldItalic:      /usr/lib/ghostscript/fonts/n021024l.pfb
-!xpdf.t1Helvetica:            /usr/lib/ghostscript/fonts/n019003l.pfb
-!xpdf.t1HelveticaOblique:     /usr/lib/ghostscript/fonts/n019023l.pfb
-!xpdf.t1HelveticaBold:        /usr/lib/ghostscript/fonts/n019004l.pfb
-!xpdf.t1HelveticaBoldOblique: /usr/lib/ghostscript/fonts/n019024l.pfb
-!xpdf.t1Courier:              /usr/lib/ghostscript/fonts/n022003l.pfb
-!xpdf.t1CourierOblique:       /usr/lib/ghostscript/fonts/n022023l.pfb
-!xpdf.t1CourierBold:          /usr/lib/ghostscript/fonts/n022004l.pfb
-!xpdf.t1CourierBoldOblique:   /usr/lib/ghostscript/fonts/n022024l.pfb
-!xpdf.t1Symbol:               /usr/lib/ghostscript/fonts/s050000l.pfb
-!xpdf.t1ZapfDingbats:         /usr/lib/ghostscript/fonts/d050000l.pfb
-
 xpdf.viKeys: true
 
 ! damn, wish i knew about this one earlier
 *customization: -color
+! need to figure out the escape sequences
+rxvt*cutchars:  `´()*,;<>[]{|}
+
