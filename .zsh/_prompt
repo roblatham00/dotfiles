@@ -4,8 +4,9 @@ export PS1='%{[32m%}[%?] %m:%~%# %{[37;0m%}'
 # . path should be different from hostname
 # different hosts should have different colors
 
-SITE_PROMPT=~/.zsh/prompt.$(h=`hostname`; echo ${h#*.})  # hosname -d replacement
-LOCAL_PROMPT=~/.zsh/env.`hostname -s`
+#SITE_PROMPT=~/.zsh/prompt.$(h=`hostname`; echo ${h#*.})  # hosname -d replacement
+SITE_PROMPT=~/.zsh/prompt.$(hostname -d )  # hosname -d replacement
+LOCAL_PROMPT=~/.zsh/prompt.`hostname -s`
 [ -f $SITE_PROMPT ] && . $SITE_PROMPT
 [ -f $LOCAL_PROMPT ] && . $LOCAL_PROMPT
 
