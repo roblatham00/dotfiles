@@ -1,0 +1,3 @@
+# for some reason this alias causes big problems with SuSE zsh (cd into a
+# directory fails)
+unalias '..'
