@@ -40,7 +40,8 @@ if [ $? -eq 0 ]; then
 fi
 
 # machine specific overrides for site settings
-SITE_ENV=~/.zsh/env.$(h=`hostname`; echo ${h#*.})  # hosname -d replacement
+#SITE_ENV=~/.zsh/env.$(h=`hostname`; echo ${h#*.})  # hosname -d replacement
+SITE_ENV=~/.zsh/env.$(hostname -d)
 LOCAL_ENV=~/.zsh/env.`hostname -s`
 [ -f $SITE_ENV ] && . $SITE_ENV
 [ -f $LOCAL_ENV ] && . $LOCAL_ENV
