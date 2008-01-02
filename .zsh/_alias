@@ -38,6 +38,29 @@ pup() {
     fi
 }
 
+# password maker
+# DOE guidelines: 
+# - at least 8 chars
+# - non-number in first and last position
+# - at leat one number in the remainder
+# (rexexps are fun...)
+
+mkmepasswd () {
+    which apg  >/dev/null
+    if [ $? -eq 0 ]; then 
+        apg -n 20 -m 8 -x 8 -a 1 | egrep '^[^0-9].*[0-9].*[^0-9]$'
+	return
+    fi
+    which pwgen >/dev/null
+    if [ $? -eq 0 ]; then
+        pwgen -C -N 20 -1 -s -y | egrep '^[^0-9].*[0-9].*[^0-9]$'
+	return
+    fi
+}
+
+
+
+
 
 # site options, with machine-specific overrides
 # this sucks. 'hostname -d' isn't *always* around, but sometimes, it's the only
