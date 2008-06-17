@@ -131,3 +131,14 @@ endif
 if version >= 508
   set pastetoggle=<F10>      " toggle :paste setting
 endif
+
+" with the firefox extension _it's all text_, spawn a vim session for any
+" textareak.  just need to help it a bit with file types
+" stored Wikipedia.vim in ~/.vim/syntax
+au BufRead,BufNewFile *itsalltext/wiki*.txt setfiletype Wikipedia
+au BufRead,BufNewFile *itsalltext/trac*.txt setfiletype Wikipedia
+
+if version >=700
+  " it just got too annoying to have this on by default
+  map <F11> :set spell spelllang=en_us<CR>
+endif
