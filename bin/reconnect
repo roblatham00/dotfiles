@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+while true ; do
+	ssh $1
+	sleep $(( $RANDOM % 15 ))
+done
