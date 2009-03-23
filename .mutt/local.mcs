@@ -1,0 +1,50 @@
+#
+# local server settings
+#
+set spoolfile=imaps://zimbra.anl.gov/INBOX
+set folder=imaps://zimbra.anl.gov/
+#set spoolfile=imaps://imap.mcs.anl.gov/INBOX
+#set folder=imaps://imap.mcs.anl.gov/
+set mail_check=900  # in seconds.  
+
+#
+# local mailboxes
+#
+
+# must escape ! when i mean $spoolfile
+#mailboxes "!"/pvfs2 '!' !/pvfs2-cvs !/pvfs2-devel !/beowulf !/linux-fsdevel !/ultimate !/tfcc !/bowling !/chuckles !/romio-maint !/myrinet !/bike !/seminar !/jazz !/lustre !/netcdf !/netcdfg !/mpich2-dev !/linux-aio !/mac-users !/bluegene !/bgl-support !/mpich-discuss !/zeptoos !/radix !/lans !/chpc !/livermore !/perfbase !/mcs !/argonne !/openmpi !/alcf !/cifts !/mpi21 !/sicortex !/ngfs !/scidac !/fastos !/pnnl
+mailboxes ! +pvfs2  +pvfs2-cvs +pvfs2-devel +beowulf +linux-fsdevel +ultimate +tfcc +bowling +chuckles +romio-maint +myrinet +bike +seminar +jazz +lustre +netcdf +netcdfg +mpich2-dev +linux-aio +mac-users +bluegene +bgl-support +mpich-discuss +zeptoos +radix +lans +chpc +livermore +perfbase +mcs +argonne +openmpi +alcf +cifts +mpi21 +sicortex +ngfs +scidac +fastos +pnnl +hdf5 +bgq
+
+lists pvfs2-internal pvfs2-developers pvfs2-users beowulf parallel-netcdf beowulf@beowulf.org zeptoos radix alcf-radix
+subscribe pvfs-developers pvfs-users pvfs2-internal pvfs2-developers pvfs2-users beowulf parallel-netcdf beowulf@beowulf.org zeptoos radix alcf-radix 
+
+#alternates robl@mcs.anl.gov
+
+#
+# local rc overrides
+# 
+set mbox=+read_mail
+set record=+sent_mail
+set move=no   # try explicitly moving emails out of INBOX 
+
+# machine.mcs.anl.gov is lame
+set hostname="mcs.anl.gov"
+
+folder-hook . 'color body white default ^\\+.*$'
+folder-hook . 'color body white default ^-.*$'
+# local folder-hooks
+folder-hook pvfs2-cvs 'color body brightred default ^-.*$'
+folder-hook pvfs2-cvs 'color body brightgreen default ^\\+.*$'
+
+# playing with imap header caching on mcs machines because IMAPS is dirt slow
+set header_cache=/var/tmp/robl/hcache/
+
+set query_command="lbdbq '%s'"
+# procmail on mcs is kinda off, so manually seed lbdb
+macro index A "|lbdb-fetchaddr" "add address to lbdb"
+
+# zimbra IMAP doesn't report number of new. only reports total unread
+macro index <f6> "<tag-pattern>~O|~N\r<tag-prefix-cond><clear-flag>N<untag-pattern>.*\r" "Mark all messages as read"
+# 
+
+# vim:ft=muttrc
