@@ -1,5 +1,7 @@
 " let's try this:  in mutt, i want a text width of 70: 
 set tw=70 
+set spell spelllang=en_us
+
 command! -nargs=1 -complete=file Attach :call AttachFieldFunction(<q-args>)
 function! AttachFieldFunction(file)
 	execute "normal mx1G/^ *$/\<CR>"
@@ -17,3 +19,4 @@ noremap ,srot /^Subjectdw:.!tr A-Za-z N-ZA-Mn-za-m0P
 
 " this one rot13s the whole buffer. could be modified to filter just a region
 " 1G!G/usr/games/rot13
+
