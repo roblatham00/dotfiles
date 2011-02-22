@@ -13,7 +13,7 @@ set mail_check=900  # in seconds.
 
 # must escape ! when i mean $spoolfile
 #mailboxes "!"/pvfs2 '!' !/pvfs2-cvs !/pvfs2-devel !/beowulf !/linux-fsdevel !/ultimate !/tfcc !/bowling !/chuckles !/romio-maint !/myrinet !/bike !/seminar !/jazz !/lustre !/netcdf !/netcdfg !/mpich2-dev !/linux-aio !/mac-users !/bluegene !/bgl-support !/mpich-discuss !/zeptoos !/radix !/lans !/chpc !/livermore !/perfbase !/mcs !/argonne !/openmpi !/alcf !/cifts !/mpi21 !/sicortex !/ngfs !/scidac !/fastos !/pnnl
-mailboxes ! +pvfs2  +pvfs2-cvs +pvfs2-devel +beowulf +linux-fsdevel +ultimate +tfcc +bowling +chuckles +romio-maint +myrinet +bike +seminar +jazz +lustre +netcdf +netcdfg +mpich2-dev +linux-aio +mac-users +bluegene +bgl-support +mpich-discuss +zeptoos +radix +lans +chpc +livermore +perfbase +mcs +argonne +openmpi +alcf +cifts +mpi21 +sicortex +ngfs +scidac +fastos +pnnl +hdf5 +bgq
+mailboxes ! +pvfs-v2/pvfs2  +pvfs-v2/pvfs2-devel +beowulf +ultimate +bowling +chuckles +romio-maint +seminar +jazz +lustre +netcdf +netcdfg +mpich2-dev +mac-users +bluegene +bgl-support +mpich-discuss +zeptoos +radix +lans +chpc +livermore +mcs +argonne +openmpi +alcf +cifts +mpi21 +sicortex +ngfs +scidac +fastos +pnnl +hdf5 +bgq +xchem +climate +damsel
 
 lists pvfs2-internal pvfs2-developers pvfs2-users beowulf parallel-netcdf beowulf@beowulf.org zeptoos radix alcf-radix
 subscribe pvfs-developers pvfs-users pvfs2-internal pvfs2-developers pvfs2-users beowulf parallel-netcdf beowulf@beowulf.org zeptoos radix alcf-radix 
@@ -38,6 +38,8 @@ folder-hook pvfs2-cvs 'color body brightgreen default ^\\+.*$'
 
 # playing with imap header caching on mcs machines because IMAPS is dirt slow
 set header_cache=/var/tmp/robl/hcache/
+# body cache can use the same dir no problem
+set message_cachedir=/var/tmp/robl/hcache/
 
 set query_command="lbdbq '%s'"
 # procmail on mcs is kinda off, so manually seed lbdb
