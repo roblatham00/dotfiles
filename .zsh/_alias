@@ -1,6 +1,8 @@
 alias ls="ls --color=auto"
 alias la="ls -a --color=auto"
 
+alias grep='grep --color=auto'
+
 alias acs="apt-cache search"
 alias acsh="apt-cache show"
 alias sagu="sudo apt-get update"
@@ -19,6 +21,7 @@ alias cbuild="find . -iname \*.\[chylsi] \
 	> cscope.files && cscope -be -i cscope.files"
 alias view='vim -R'
 alias viz='vim -R -'
+
 
 pup() {
 	psnup -Pletter -2 $1 ${1%.*}-2.ps
