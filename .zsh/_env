@@ -25,11 +25,12 @@ stty -ixon
 which dircolors >/dev/null 2>&1 &&  eval `dircolors -b`
 which lesspipe >/dev/null 2>&1 && eval `lesspipe`
 
-export LESSCHARSET=latin1
-
 export EDITOR=vim
 export CVS_RSH=ssh
 export RSYNC_RSH=ssh
+
+# why isn't this the default?
+ulimit -c unlimited
 
 # use ccache if installed
 which ccache >/dev/null 2>&1
