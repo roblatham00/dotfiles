@@ -1,0 +1,11 @@
+alias mcsfs='sshfs login3.mcs.anl.gov: /home/robl/sshfs/mcs'
+alias terizlafs='sshfs terizla: /home/robl//sshfs/terizla'
+alias bgpfs='sshfs login2.surveyor.alcf.anl.gov: /home/robl/sshfs/bgp'
+alias faxfs='sshfs login3.mcs.anl.gov:/nfs/web/inside.mcs.anl.gov/content/fax /home/robl/sshfs/faxes'
+
+alias alert='notify-send --urgency=low \
+	-i "$([ $? = 0 ] && echo terminal || echo error)" \
+	"$(history $HISTCMD| sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+
+alias './maint/updatefiles'=./autogen.sh
