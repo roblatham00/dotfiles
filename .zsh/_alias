@@ -48,6 +48,7 @@ pup() {
 # - non-number in first and last position
 # - at leat one number in the remainder
 # - no percent character because that gets you in trouble with some applications
+# - yearg, or backslash
 # (rexexps are fun...)
 
 mkmepasswd () {
@@ -60,7 +61,7 @@ mkmepasswd () {
     if [ $? -eq 0 ]; then
         pwgen -C -N 20 -1 -s -y  
 	return
-    fi) |egrep '^[^0-9].*[0-9].*[^0-9]$' | grep -v '%'
+    fi) |egrep '^[^0-9].*[0-9].*[^0-9]$' | egrep -v '[%\\]'
 }
 
 
