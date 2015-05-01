@@ -5,7 +5,7 @@ export GIT_PS1_SHOWSTASHSTATE=1
 export GIT_PS1_SHOWUPSTREAM=1
 export GIT_PS1_SHOWCOLORHINTS=1
 
-export PS1='%{[32m%}[%?] %m:%~$(__git_ps1 " (%s)")%# %{[37;0m%}'
+export PS1='%{[32m%}[%?] %m:%~%{[37;0m%}$(__git_ps1 " (%s)")%{[32m%}%# %{[37;0m%}'
 # egads, what have i done!  now i can tweak 
 # . return code ( red if nonzero )
 # . path should be different from hostname
