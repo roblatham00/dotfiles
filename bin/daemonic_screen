@@ -1,8 +1,11 @@
-#!/bin/sh
-# $Id$
+#!/bin/bash
+# $Id: daemonic_screen,v 1.2 2005-03-11 00:21:52 robl Exp $
 #
 # Shell script to manage screen daemons
 #   checks if there is a screen daemon running, if not, starts one
 #   then exec's a screen session attaching to it
 
+#sleep $((RANDOM % 10))
 exec screen -A -x -RR "$@"
+# this tmux is close, but not quite right
+# exec tmux new-session -A -s default
