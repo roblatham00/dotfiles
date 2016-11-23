@@ -1,3 +1,95 @@
+" modifications for vundle:
+" https://github.com/gmarik/Vundle.vim
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
+Plugin 'JuliaLang/julia-vim'
+Plugin 'wting/rust.vim'
+
+
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" Plugin 'git://git.wincent.com/command-t.git'
+" " git repos on your local machine (i.e. when working on your own plugin)
+" Plugin 'file:///home/gmarik/path/to/plugin'
+" " The sparkup vim script is in a subdirectory of this repo called vim.
+" " Pass the path to set the runtimepath properly.
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Avoid a name conflict with L9
+" Plugin 'user/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+let g:syntastic_c_compiler = "clang"
+let g:syntastic_c_check_header = 1
+let g:syntastic_c_no_include_search = 1
+let g:syntastic_c_no_default_include_dirs = 1
+let g:syntastic_c_compiler_options = "-Wall -I$HOME/work/soft/mpich/include -I${HOME}/work/soft/snappy-master/include -I${HOME}/work/soft/mercury/include"
+let g:syntastic_cxx_compiler_options = "-Wall -I$HOME/work/soft/mpich/include -I${HOME}/work/soft/snappy-master/include -I${HOME}/work/soft/mercury/include"
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_c_remove_include_errors = 1
+let g:syntastic_aggregate_errors = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+" If we are in the mpich directory, add the correct include directories
+if getcwd() =~ 'mpich$'
+	let g:syntastic_c_include_dirs = [
+            \ 'src/include',
+            \ 'src/mpi/romio/adio/include',
+            \ 'src/mpid/ch3/include',
+            \ 'src/mpid/ch3/channels/nemesis/include',
+            \ 'src/mpid/ch3/channels/nemesis/utils/monitor',
+            \ 'src/mpid/ch3/channels/sock/include',
+            \ 'src/mpid/common/datatype',
+            \ 'src/mpid/common/sched',
+            \ 'src/mpid/common/thread',
+            \ 'src/util/wrappers',
+            \ 'test/mpi/include/',
+            \ ]
+elseif getcwd() =~ 'data_structures$'
+	let g:syntastic_c_include_dirs = [
+	    \ '/home/robl/work/soft/data_structures/include',
+	    \ 'include',
+	    \ 'src',
+	    \ '.',
+	    \ ]
+else
+	let g:syntastic_c_include_dirs = [
+            \ 'include',
+	    \ 'src',
+            \ '.',
+            \ ]
+endif
+"
+" Brief help
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 " An example for a vimrc file.
 "
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
@@ -35,7 +127,6 @@ vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
 " Switch syntax highlighting on, when the terminal has colors
 if &t_Co > 2 || has("gui_running")
-  let fortran_free_source=1
   syntax on
 endif
 
@@ -69,7 +160,7 @@ if has("autocmd")
   "   For other files switch it off.
   "   Don't change the order, it's important that the line with * comes first.
   autocmd FileType *      set formatoptions=tcql nocindent comments&
-  autocmd FileType c,cpp,java  set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,://
+  autocmd FileType c,cpp,java  set formatoptions=croql cindent comments=sr:/*,mb:*,el:*/,:// ts=8 sts=4 sw=4 noexpandtab
  augroup END
 
  augroup gzip
@@ -130,7 +221,7 @@ if version >=600
 endif
 
 if version >= 508
-  set pastetoggle=<F10>      " toggle :paste setting
+  set pastetoggle=<F9>      " toggle :paste setting
 endif
 
 " with the firefox extension _it's all text_, spawn a vim session for any
@@ -141,5 +232,18 @@ au BufRead,BufNewFile *itsalltext/trac*.txt setfiletype Wikipedia
 
 if version >=700
   " it just got too annoying to have this on by default
-  map <F11> :set spell spelllang=en_us<CR>
+  " map <F11> :set spell spelllang=en_us<CR>
 endif
+
+filetype indent on  
+filetype plugin on
+
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+
