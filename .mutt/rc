@@ -9,7 +9,7 @@ set confirmappend=no
 set editor="vim"
 set help
 set mbox=+read_mail
-set record=+sent_mail
+set record=+Sent
 
 set sort=threads
 set pager_index_lines=10
@@ -17,7 +17,7 @@ set timeout=60
 
 set markers=no 			# get rid of those damn '+' chars
 
-set index_format="%4C %Z %{%b %d %H:%M} %-15.15F [%4c] %s"
+set index_format="%4C %Z %{%b %d %H:%M} %-20.20F [%4c] %s"
 # this folder_format could use some tweaking
 set folder_format="%2C %t %N %-35f %20.20d"                                    
 
