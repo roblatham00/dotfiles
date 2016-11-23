@@ -40,6 +40,8 @@ if [ $? -eq 0 ]; then
 	export CCACHE_DIR=/var/tmp/`whoami`/ccache
 fi
 
+export MANPATH=${HOME}/work/soft/mpich/share/man:${MANPATH}
+
 # machine specific overrides for site settings
 #SITE_ENV=~/.zsh/env.$(h=`hostname`; echo ${h#*.})  # hosname -d replacement
 SITE_ENV=~/.zsh/env.$(hostname -d)

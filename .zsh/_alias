@@ -22,6 +22,7 @@ alias cbuild="find . -iname \*.\[chylsi] \
 	> cscope.files && cscope -be -i cscope.files"
 alias view='vim -R'
 alias viz='vim -R -'
+alias pmake='nice make -j -k -l $(grep ^processor </proc/cpuinfo | wc -l) 2>qc.log'
 
 
 pup() {
@@ -49,6 +50,7 @@ pup() {
 # - at leat one number in the remainder
 # - no percent character because that gets you in trouble with some applications
 # - yearg, or backslash
+# - or dollar sign?
 # (rexexps are fun...)
 
 mkmepasswd () {
@@ -61,11 +63,8 @@ mkmepasswd () {
     if [ $? -eq 0 ]; then
         pwgen -C -N 20 -1 -s -y  
 	return
-    fi) |egrep '^[^0-9].*[0-9].*[^0-9]$' | egrep -v '[%\\]'
+    fi) |egrep '^[^0-9].*[0-9].*[^0-9]$' | egrep -v '[\$%\\]'
 }
-
-
-
 
 
 # site options, with machine-specific overrides
